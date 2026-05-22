@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^6.1.2
 
   # Navigation
   go_router: ^13.2.0
@@ -28,6 +27,7 @@ dependencies:
   uuid: ^4.4.0
   http: ^1.2.1
   web_socket_channel: ^3.0.1
+  web: ^1.1.1
 
 dev_dependencies:
   flutter_test:

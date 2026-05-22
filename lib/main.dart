@@ -7,6 +7,7 @@ import 'services/auth_service.dart';
 import 'services/db_service.dart';
 import 'services/api_service.dart';
 import 'services/websocket_service.dart';
+import 'services/face_server_service.dart';
 import 'router/app_router.dart';
 
 Future<void> main() async {
@@ -21,8 +22,9 @@ Future<void> main() async {
   final auth = AuthService();
   await auth.restoreSession();
 
-  final apiService = ApiService();
-  final wsService  = WebSocketService();
+  final apiService  = ApiService();
+  final wsService   = WebSocketService();
+  final faceService = FaceServerService();
 
   // Inject token if session was already restored
   if (auth.token != null) {
@@ -43,7 +45,9 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider<WebSocketService>(
           create: (_) => wsService,
-          dispose: (_, s) => s.dispose(),
+        ),
+        ChangeNotifierProvider<FaceServerService>.value(
+          value: faceService,
         ),
       ],
       child: const GeoVisionApp(),
